@@ -1,5 +1,7 @@
 import "../styles/globals.css";
 import Head from "next/head";
+import { Provider } from "react-redux";
+import store from "../src/store";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -8,9 +10,9 @@ function MyApp({ Component, pageProps }) {
         <title>Messing with Redux</title>
         <link rel="icon" href="" />
       </Head>
-      <div>
+      <Provider store={store}>
         <Component {...pageProps} />
-      </div>
+      </Provider>
     </>
   );
 }
