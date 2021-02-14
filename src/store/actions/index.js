@@ -2,7 +2,7 @@ import {
   LOADING_TRANSLATION,
   TRANSLATED_CURRENCY,
   ERROR_TRANSLATING,
-} from "./types";
+} from "../types";
 
 // the loading action creator
 export const loading = () => {

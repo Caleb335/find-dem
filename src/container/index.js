@@ -3,38 +3,27 @@ import style from "./style/container.module.css";
 import Card from "../components/card";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { TRANSLATED_CURRENCY } from "../store/types";
+import { getTranslation, loading, errorTranslating } from "../store/actions";
 
 const key =
   "tuforty_159FvsJ263hXlcbEJVCpxvW9VqWm9JBRF06uhuhMoeAELDuTEMGjdFUvgHxn";
+const url = `https://tuforty.com/api/v1/translator/money?value=${translatedResult.amount}&language=${translatedResult.language}&currency=${translatedResult.currency_code}`;
 
 const Body = () => {
   const translation = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  const getTranslation = () => {
-    return (dispatch) => {
-      axios
-        .get("https://tuforty.com/api/v1/translator/money", {
-          mode: "no-cors",
-          headers: {
-            "content-type": "application/json; charset=UTF-8",
-            Authorization: `Bearer ${key}`,
-            "Access-Control-Allow-Origin": "http://localhost:3000",
-          },
-        })
-        .then((response) => {
-          dispatch({
-            type: TRANSLATED_CURRENCY,
-            payload: response.data,
-          });
-          console.log(`this is the ${payload}`);
-        });
-    };
-  };
-
-  const onFetchedData = () => {
-    dispatch(getTranslation());
+  const getTranslation = async () => {
+    try {
+      const result = await axios.get(url, {
+        headers: {
+          Authorization: `Bearer ${key}`,
+        },
+      });
+      console.log(result.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -43,9 +32,15 @@ const Body = () => {
       <div className={`center ${style.cardZone}`}>
         <Card>
           <h4>Amount: NGN50k</h4>
+          <select>
+            <option>GBP</option>
+          </select>
+          <select>
+            <option>fr</option>
+          </select>
         </Card>
       </div>
-      <button onClick={onFetchedData}>Translate</button>
+      <button onClick={getTranslation}>Translate</button>
     </section>
   );
 };

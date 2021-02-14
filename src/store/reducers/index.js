@@ -5,33 +5,37 @@ import {
 } from "../types";
 
 const initialState = {
-  translatedResult: [],
+  translatedResult: {
+    amount: "",
+    currency_code: "",
+    language: "",
+  },
   loading: false,
   error: null,
 };
 
 const rootReducer = (state = initialState, action) => {
-  if (action.type === LOADING_TRANSLATION) {
-    return {
-      ...state,
-      loading: true,
-    };
+  switch (action.type) {
+    case LOADING_TRANSLATION:
+      return {
+        ...state,
+        loading: true,
+      };
+    case TRANSLATED_CURRENCY:
+      return {
+        ...state,
+        loading: false,
+        translatedResult: action.payload,
+      };
+    case ERROR_TRANSLATING:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    default:
+      return state;
   }
-  if (action.type === TRANSLATED_CURRENCY) {
-    return {
-      ...state,
-      loading: false,
-      translatedResult: action.payload,
-    };
-  }
-  if (action.payload === ERROR_TRANSLATING) {
-    return {
-      ...state,
-      loading: false,
-      error: action.payload,
-    };
-  }
-  return state;
 };
 
 export default rootReducer;
