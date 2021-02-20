@@ -1,3 +1,9 @@
 .containerRoot {
-  height: 100%;
+  min-height: 78vh;
+}
+.containerRoot h3 {
+  font-weight: normal;
+}
+.amount {
+  width: 130px;
 }

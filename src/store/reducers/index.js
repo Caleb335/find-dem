@@ -6,7 +6,7 @@ import {
 
 const initialState = {
   translatedResult: {
-    amount: "",
+    amount: "100",
     currency_code: "",
     language: "",
   },

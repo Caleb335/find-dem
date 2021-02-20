@@ -29,8 +29,7 @@ a {
   text-align: center;
 }
 .card-base {
-  height: 400px;
-  width: 400px;
+  height: 100%;
   box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.01);
   background: #fff;
   border-radius: 8px;

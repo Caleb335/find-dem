@@ -7,7 +7,6 @@ import { getTranslation, loading, errorTranslating } from "../store/actions";
 
 const key =
   "tuforty_159FvsJ263hXlcbEJVCpxvW9VqWm9JBRF06uhuhMoeAELDuTEMGjdFUvgHxn";
-const url = `https://tuforty.com/api/v1/translator/money?value=${translatedResult.amount}&language=${translatedResult.language}&currency=${translatedResult.currency_code}`;
 
 const Body = () => {
   const translation = useSelector((state) => state);
@@ -29,16 +28,12 @@ const Body = () => {
   return (
     <section className={style.containerRoot}>
       <h3 className={`text-center center`}>Translation process goes here...</h3>
+      <Card className={style.amount}>
+        #4,500.00K
+        <p>translated result: {translation.translatedResult.amount}</p>
+      </Card>
       <div className={`center ${style.cardZone}`}>
-        <Card>
-          <h4>Amount: NGN50k</h4>
-          <select>
-            <option>GBP</option>
-          </select>
-          <select>
-            <option>fr</option>
-          </select>
-        </Card>
+        <Card></Card>
       </div>
       <button onClick={getTranslation}>Translate</button>
     </section>
