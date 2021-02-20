@@ -12,13 +12,16 @@ const Body = () => {
   const translation = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  const getTranslation = async () => {
+  const url = `https://tuforty.com/api/v1/translator/money?value=${translation.translatedResult.amount}&language=${translation.translatedResult.language}&currency=${translation.translatedResult.currency_code}`;
+
+  const getResult = async () => {
     try {
       const result = await axios.get(url, {
         headers: {
           Authorization: `Bearer ${key}`,
         },
       });
+      dispatch(getTranslation(getResult.data));
       console.log(result.data);
     } catch (error) {
       console.log(error);
@@ -33,9 +36,9 @@ const Body = () => {
         <p>translated result: {translation.translatedResult.amount}</p>
       </Card>
       <div className={`center ${style.cardZone}`}>
-        <Card></Card>
+        <Card>Popular jingo</Card>
       </div>
-      <button onClick={getTranslation}>Translate</button>
+      <button onClick={getResult}>Translate</button>
     </section>
   );
 };

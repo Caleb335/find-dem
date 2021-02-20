@@ -7,8 +7,8 @@ import {
 const initialState = {
   translatedResult: {
     amount: "100",
-    currency_code: "",
-    language: "",
+    currency_code: "GBP",
+    language: "en",
   },
   loading: false,
   error: null,
